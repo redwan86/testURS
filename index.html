@@ -1,0 +1,520 @@
+<html class="scroll-smooth" lang="id">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Sistem Informasi Pengecekan Kondisi Fisik Mesin
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+  <header class="bg-blue-700 text-white shadow">
+   <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
+    <div class="flex items-center space-x-3">
+     <img alt="Ikon roda gigi berwarna putih sebagai simbol mesin" class="w-12 h-12" height="48" src="https://storage.googleapis.com/a1aa/image/c119e34d-5d48-4eff-1d44-e0b523dc0f20.jpg" width="48"/>
+     <h1 class="text-2xl font-semibold">
+      Sistem Informasi Pengecekan Mesin
+     </h1>
+    </div>
+    <nav class="mt-3 md:mt-0">
+     <ul class="flex space-x-6 text-lg font-medium">
+      <li>
+       <a class="hover:text-gray-300" href="#dashboard">
+        Dashboard
+       </a>
+      </li>
+      <li>
+       <a class="hover:text-gray-300" href="#cek-mesin">
+        Cek Mesin
+       </a>
+      </li>
+      <li>
+       <a class="hover:text-gray-300" href="#riwayat">
+        Riwayat
+       </a>
+      </li>
+      <li>
+       <a class="hover:text-gray-300" href="#laporan">
+        Laporan
+       </a>
+      </li>
+      <li>
+       <a class="hover:text-gray-300" href="#kontak">
+        Kontak
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <main class="flex-grow container mx-auto px-4 py-8 space-y-12">
+   <!-- Dashboard Section -->
+   <section class="bg-white rounded-lg shadow p-6" id="dashboard">
+    <h2 class="text-3xl font-semibold mb-6 text-blue-700">
+     Dashboard
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+     <div class="bg-blue-100 rounded-lg p-5 flex items-center space-x-4">
+      <div class="bg-blue-700 text-white rounded-full p-3">
+       <i class="fas fa-cogs fa-2x">
+       </i>
+      </div>
+      <div>
+       <p class="text-2xl font-bold" id="totalMesin">
+        24
+       </p>
+       <p class="text-gray-700">
+        Total Mesin
+       </p>
+      </div>
+     </div>
+     <div class="bg-green-100 rounded-lg p-5 flex items-center space-x-4">
+      <div class="bg-green-700 text-white rounded-full p-3">
+       <i class="fas fa-check-circle fa-2x">
+       </i>
+      </div>
+      <div>
+       <p class="text-2xl font-bold" id="mesinBaik">
+        18
+       </p>
+       <p class="text-gray-700">
+        Mesin Kondisi Baik
+       </p>
+      </div>
+     </div>
+     <div class="bg-yellow-100 rounded-lg p-5 flex items-center space-x-4">
+      <div class="bg-yellow-700 text-white rounded-full p-3">
+       <i class="fas fa-exclamation-triangle fa-2x">
+       </i>
+      </div>
+      <div>
+       <p class="text-2xl font-bold" id="mesinPerluPerbaikan">
+        4
+       </p>
+       <p class="text-gray-700">
+        Mesin Perlu Perbaikan
+       </p>
+      </div>
+     </div>
+     <div class="bg-red-100 rounded-lg p-5 flex items-center space-x-4">
+      <div class="bg-red-700 text-white rounded-full p-3">
+       <i class="fas fa-times-circle fa-2x">
+       </i>
+      </div>
+      <div>
+       <p class="text-2xl font-bold" id="mesinRusak">
+        2
+       </p>
+       <p class="text-gray-700">
+        Mesin Rusak
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Cek Mesin Section -->
+   <section class="bg-white rounded-lg shadow p-6" id="cek-mesin">
+    <h2 class="text-3xl font-semibold mb-6 text-blue-700">
+     Form Pengecekan Mesin
+    </h2>
+    <form class="space-y-6 max-w-3xl" id="formCekMesin" novalidate="">
+     <div>
+      <label class="block text-lg font-medium mb-1" for="nomorMesin">
+       Nomor Mesin
+      </label>
+      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="nomorMesin" name="nomorMesin" placeholder="Masukkan nomor mesin" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block text-lg font-medium mb-1" for="tanggalCek">
+       Tanggal Pengecekan
+      </label>
+      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="tanggalCek" name="tanggalCek" required="" type="date"/>
+     </div>
+     <div>
+      <label class="block text-lg font-medium mb-1" for="kondisiMesin">
+       Kondisi Mesin
+      </label>
+      <select class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="kondisiMesin" name="kondisiMesin" required="">
+       <option disabled="" selected="" value="">
+        Pilih kondisi mesin
+       </option>
+       <option value="baik">
+        Baik
+       </option>
+       <option value="perlu_perbaikan">
+        Perlu Perbaikan
+       </option>
+       <option value="rusak">
+        Rusak
+       </option>
+      </select>
+     </div>
+     <div>
+      <label class="block text-lg font-medium mb-1" for="catatan">
+       Catatan
+      </label>
+      <textarea class="w-full border border-gray-300 rounded-md px-4 py-2 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500" id="catatan" name="catatan" placeholder="Masukkan catatan tambahan (opsional)" rows="4"></textarea>
+     </div>
+     <button class="bg-blue-700 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition" type="submit">
+      Simpan Pengecekan
+     </button>
+    </form>
+   </section>
+   <!-- Riwayat Section -->
+   <section class="bg-white rounded-lg shadow p-6" id="riwayat">
+    <h2 class="text-3xl font-semibold mb-6 text-blue-700">
+     Riwayat Pengecekan Mesin
+    </h2>
+    <div class="overflow-x-auto">
+     <table class="min-w-full border border-gray-200 rounded-md">
+      <thead class="bg-blue-100 text-blue-700 font-semibold">
+       <tr>
+        <th class="px-4 py-3 border-b border-blue-200 text-left">
+         Nomor Mesin
+        </th>
+        <th class="px-4 py-3 border-b border-blue-200 text-left">
+         Tanggal
+        </th>
+        <th class="px-4 py-3 border-b border-blue-200 text-left">
+         Kondisi
+        </th>
+        <th class="px-4 py-3 border-b border-blue-200 text-left">
+         Catatan
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-001
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-01
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
+         Baik
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Semua komponen berfungsi normal
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-002
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-02
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-yellow-700 font-semibold">
+         Perlu Perbaikan
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Suara mesin agak berisik, perlu pelumasan
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-003
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-03
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-red-700 font-semibold">
+         Rusak
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Mesin tidak menyala, perlu penggantian komponen
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-004
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-04
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
+         Baik
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Pengecekan rutin, kondisi optimal
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-005
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-05
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-yellow-700 font-semibold">
+         Perlu Perbaikan
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Kebocoran oli terdeteksi, segera perbaiki
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-006
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-06
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
+         Baik
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Mesin bersih dan terawat
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-007
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-07
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-red-700 font-semibold">
+         Rusak
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Kerusakan pada sistem pendingin
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-008
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-08
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
+         Baik
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Semua sensor berfungsi dengan baik
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-009
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-09
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-yellow-700 font-semibold">
+         Perlu Perbaikan
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Getaran mesin meningkat, perlu pengecekan
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-010
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-10
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
+         Baik
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Pengecekan rutin, tidak ada masalah
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-011
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-11
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
+         Baik
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Mesin dalam kondisi prima
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-012
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-12
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-yellow-700 font-semibold">
+         Perlu Perbaikan
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Kebocoran kecil pada pipa oli
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-013
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-13
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
+         Baik
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Semua indikator normal
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-014
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-14
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-red-700 font-semibold">
+         Rusak
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Kerusakan pada motor penggerak
+        </td>
+       </tr>
+       <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border-b border-gray-200">
+         M-015
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         2024-06-15
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
+         Baik
+        </td>
+        <td class="px-4 py-3 border-b border-gray-200">
+         Pengecekan berkala selesai tanpa masalah
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </section>
+   <!-- Laporan Section -->
+   <section class="bg-white rounded-lg shadow p-6" id="laporan">
+    <h2 class="text-3xl font-semibold mb-6 text-blue-700">
+     Laporan Kondisi Mesin
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+     <div class="bg-blue-50 rounded-lg p-5 text-center">
+      <img alt="Ilustrasi mesin berwarna hijau menunjukkan kondisi mesin baik" class="mx-auto mb-4 rounded-md" height="150" src="https://storage.googleapis.com/a1aa/image/19f05c8a-6325-401e-9c2e-b92d59c884d3.jpg" width="150"/>
+      <h3 class="text-xl font-semibold text-green-700 mb-2">
+       Mesin Baik
+      </h3>
+      <p class="text-gray-700">
+       Jumlah mesin yang dalam kondisi baik dan siap digunakan.
+      </p>
+      <p class="mt-3 text-3xl font-bold text-green-700">
+       18
+      </p>
+     </div>
+     <div class="bg-yellow-50 rounded-lg p-5 text-center">
+      <img alt="Ilustrasi mesin berwarna kuning dengan tanda peringatan menunjukkan mesin perlu perbaikan" class="mx-auto mb-4 rounded-md" height="150" src="https://storage.googleapis.com/a1aa/image/4283a762-4175-4e6e-0931-4f75704d7dbe.jpg" width="150"/>
+      <h3 class="text-xl font-semibold text-yellow-700 mb-2">
+       Perlu Perbaikan
+      </h3>
+      <p class="text-gray-700">
+       Mesin yang memerlukan perbaikan agar dapat berfungsi optimal.
+      </p>
+      <p class="mt-3 text-3xl font-bold text-yellow-700">
+       4
+      </p>
+     </div>
+     <div class="bg-red-50 rounded-lg p-5 text-center">
+      <img alt="Ilustrasi mesin berwarna merah dengan tanda silang menunjukkan mesin rusak" class="mx-auto mb-4 rounded-md" height="150" src="https://storage.googleapis.com/a1aa/image/68362b87-fd6e-40c9-bf11-cb837b6ef56a.jpg" width="150"/>
+      <h3 class="text-xl font-semibold text-red-700 mb-2">
+       Mesin Rusak
+      </h3>
+      <p class="text-gray-700">
+       Mesin yang tidak dapat beroperasi dan perlu penggantian komponen.
+      </p>
+      <p class="mt-3 text-3xl font-bold text-red-700">
+       2
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- Kontak Section -->
+   <section class="bg-white rounded-lg shadow p-6 max-w-3xl mx-auto" id="kontak">
+    <h2 class="text-3xl font-semibold mb-6 text-blue-700 text-center">
+     Kontak Kami
+    </h2>
+    <div class="space-y-4 text-center text-gray-700">
+     <p>
+      <i class="fas fa-map-marker-alt text-blue-700 mr-2">
+      </i>
+      Jl. Industri No. 123, Jakarta, Indonesia
+     </p>
+     <p>
+      <i class="fas fa-phone-alt text-blue-700 mr-2">
+      </i>
+      +62 21 555 1234
+     </p>
+     <p>
+      <i class="fas fa-envelope text-blue-700 mr-2">
+      </i>
+      support@mesininfo.co.id
+     </p>
+    </div>
+    <form class="mt-6 space-y-4" id="formKontak" novalidate="">
+     <div>
+      <label class="block text-lg font-medium mb-1" for="namaKontak">
+       Nama
+      </label>
+      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="namaKontak" name="namaKontak" placeholder="Masukkan nama Anda" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block text-lg font-medium mb-1" for="emailKontak">
+       Email
+      </label>
+      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="emailKontak" name="emailKontak" placeholder="Masukkan email Anda" required="" type="email"/>
+     </div>
+     <div>
+      <label class="block text-lg font-medium mb-1" for="pesanKontak">
+       Pesan
+      </label>
+      <textarea class="w-full border border-gray-300 rounded-md px-4 py-2 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500" id="pesanKontak" name="pesanKontak" placeholder="Tulis pesan Anda" required="" rows="4"></textarea>
+     </div>
+     <button class="bg-blue-700 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition w-full" type="submit">
+      Kirim Pesan
+     </button>
+    </form>
+   </section>
+  </main>
+  <footer class="bg-blue-700 text-white py-6 mt-12">
+   <div class="container mx-auto px-4 text-center text-sm">
+    © 2024 Sistem Informasi Pengecekan Mesin. All rights reserved.
+   </div>
+  </footer>
+  <script>
+   // Simple form submission handlers to prevent reload
+    document.getElementById('formCekMesin').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Data pengecekan mesin berhasil disimpan!');
+      this.reset();
+    });
+
+    document.getElementById('formKontak').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Pesan Anda telah terkirim. Terima kasih!');
+      this.reset();
+    });
+  </script>
+ </body>
+</html>
