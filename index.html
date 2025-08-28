@@ -1,753 +1,907 @@
-<html class="scroll-smooth" lang="id">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Sistem Informasi Pengecekan Kondisi Fisik Mesin
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <style>
-   body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
- </head>
- <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-  <header class="bg-blue-700 text-white shadow">
-   <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
-    <div class="flex items-center space-x-3">
-     <img alt="Logo Santos" class="w-12 h-12" height="48" src="https://www.santosjayaabadi.co.id/Logo-SJA.png" width="55"/>
-     <h1 class="text-2xl font-semibold">
-      Sistem Informasi Pengecekan Mesin
-     </h1>
-    </div>
-    <nav class="mt-3 md:mt-0">
-     <ul class="flex space-x-6 text-lg font-medium">
-      <li>
-       <a class="hover:text-gray-300" href="#dashboard">
-        Dashboard
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-gray-300" href="#cek-mesin">
-        Cek Mesin
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-gray-300" href="#konfirm">
-        Status Konfirm
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-gray-300" href="#laporan">
-        Laporan
-       </a>
-      </li>
-      <li>
-       <a class="hover:text-gray-300" href="#records">
-        Riwayat
-       </a>
-      </li>
-     </ul>
-    </nav>
-   </div>
-  </header>
-  <main class="flex-grow container mx-auto px-4 py-8 space-y-12">
-   <!-- Dashboard Section -->
-   <section class="bg-white rounded-lg shadow p-6" id="dashboard">
-    <h2 class="text-3xl font-semibold mb-6 text-blue-700">
-     Dashboard
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-     <div class="bg-blue-100 rounded-lg p-5 flex items-center space-x-4">
-      <div class="bg-blue-700 text-white rounded-full p-3">
-       <i class="fas fa-cogs fa-2x">
-       </i>
-      </div>
-      <div>
-       <p class="text-2xl font-bold" id="totalMesin">
-        24
-       </p>
-       <p class="text-gray-700">
-        Total Mesin
-       </p>
-      </div>
-     </div>
-     <div class="bg-green-100 rounded-lg p-5 flex items-center space-x-4">
-      <div class="bg-green-700 text-white rounded-full p-3">
-       <i class="fas fa-check-circle fa-2x">
-       </i>
-      </div>
-      <div>
-       <p class="text-2xl font-bold" id="mesinBaik">
-        18
-       </p>
-       <p class="text-gray-700">
-        Mesin Kondisi Baik
-       </p>
-      </div>
-     </div>
-     <div class="bg-yellow-100 rounded-lg p-5 flex items-center space-x-4">
-      <div class="bg-yellow-700 text-white rounded-full p-3">
-       <i class="fas fa-exclamation-triangle fa-2x">
-       </i>
-      </div>
-      <div>
-       <p class="text-2xl font-bold" id="mesinPerluPerbaikan">
-        4
-       </p>
-       <p class="text-gray-700">
-        Mesin Perlu Perbaikan
-       </p>
-      </div>
-     </div>
-     <div class="bg-red-100 rounded-lg p-5 flex items-center space-x-4">
-      <div class="bg-red-700 text-white rounded-full p-3">
-       <i class="fas fa-times-circle fa-2x">
-       </i>
-      </div>
-      <div>
-       <p class="text-2xl font-bold" id="mesinRusak">
-        2
-       </p>
-       <p class="text-gray-700">
-        Mesin Rusak
-       </p>
-      </div>
-     </div>
-    </div>
-   </section>
-   <!-- Cek Mesin Section -->
-   <section class="bg-white rounded-lg shadow p-6" id="cek-mesin">
-    <h2 class="text-3xl font-semibold mb-6 text-blue-700">
-     Form Pengecekan Mesin
-    </h2>
-    <form class="space-y-6 max-w-3xl" id="formCekMesin" novalidate="">
-     <div>
-      <label class="block text-lg font-medium mb-1" for="nomorMesin">
-       Nomor Mesin
-      </label>
-      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="nomorMesin" name="nomorMesin" placeholder="Masukkan nomor mesin" required="" type="text"/>
-     </div>
-     <div>
-      <label class="block text-lg font-medium mb-1" for="tanggalCek">
-       Tanggal Pengecekan
-      </label>
-      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="tanggalCek" name="tanggalCek" required="" type="date"/>
-     </div>
-     <div>
-      <label class="block text-lg font-medium mb-1" for="kondisiMesin">
-       Kondisi Mesin
-      </label>
-      <select class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="kondisiMesin" name="kondisiMesin" required="">
-       <option disabled="" selected="" value="">
-        Pilih kondisi mesin
-       </option>
-       <option value="baik">
-        Baik
-       </option>
-       <option value="perlu_perbaikan">
-        Perlu Perbaikan
-       </option>
-       <option value="rusak">
-        Rusak
-       </option>
-      </select>
-     </div>
-     <div>
-      <label class="block text-lg font-medium mb-1" for="catatan">
-       Catatan
-      </label>
-      <textarea class="w-full border border-gray-300 rounded-md px-4 py-2 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500" id="catatan" name="catatan" placeholder="Masukkan catatan tambahan (opsional)" rows="4"></textarea>
-     </div>
-     <div>
-      <label class="block text-gray-700 font-medium mb-1" for="imageUpload">
-       Upload Gambar Mesin
-      </label>
-      <input accept="image/*" class="w-full text-gray-700" id="imageUpload" name="imageUpload" required="" type="file"/>
-     </div>
-     <button class="bg-blue-700 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition" type="submit">
-      Simpan Pengecekan
-     </button>
-    </form>
-   </section>
-   <!-- Riwayat Section -->
-   <section class="bg-white rounded-lg shadow p-6" id="konfirm">
-    <h2 class="text-3xl font-semibold mb-6 text-blue-700">
-     Status Konfirmasi
-    </h2>
-    <div class="overflow-x-auto">
-     <table class="min-w-full border border-gray-200 rounded-md">
-      <thead class="bg-blue-100 text-blue-700 font-semibold">
-       <tr>
-        <th class="px-4 py-3 border-b border-blue-200 text-left">
-         Nomor Mesin
-        </th>
-        <th class="px-4 py-3 border-b border-blue-200 text-left">
-         Tanggal
-        </th>
-        <th class="px-4 py-3 border-b border-blue-200 text-left">
-         Kondisi
-        </th>
-        <th class="px-4 py-3 border-b border-blue-200 text-left">
-         Catatan
-        </th>
-        <th class="px-4 py-3 border-b border-blue-200 text-left">
-         Status Konfirm
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-001
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-01
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Baik
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Semua komponen berfungsi normal
-        </td>
-         <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Terconfirm
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-002
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-02
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-yellow-700 font-semibold">
-         Perlu Perbaikan
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Suara mesin agak berisik, perlu pelumasan
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-003
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-03
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-red-700 font-semibold">
-         Rusak
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Mesin tidak menyala, perlu penggantian komponen
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-004
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-04
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Baik
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Pengecekan rutin, kondisi optimal
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-005
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-05
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-yellow-700 font-semibold">
-         Perlu Perbaikan
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Kebocoran oli terdeteksi, segera perbaiki
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-006
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-06
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Baik
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Mesin bersih dan terawat
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-007
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-07
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-red-700 font-semibold">
-         Rusak
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Kerusakan pada sistem pendingin
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-008
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-08
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Baik
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Semua sensor berfungsi dengan baik
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-009
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-09
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-yellow-700 font-semibold">
-         Perlu Perbaikan
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Getaran mesin meningkat, perlu pengecekan
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-010
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-10
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Baik
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Pengecekan rutin, tidak ada masalah
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-011
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-11
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Baik
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Mesin dalam kondisi prima
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-012
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-12
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-yellow-700 font-semibold">
-         Perlu Perbaikan
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Kebocoran kecil pada pipa oli
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-013
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-13
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Baik
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Semua indikator normal
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-014
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-14
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-red-700 font-semibold">
-         Rusak
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Kerusakan pada motor penggerak
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-50">
-        <td class="px-4 py-3 border-b border-gray-200">
-         M-015
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         2024-06-15
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200 text-green-700 font-semibold">
-         Baik
-        </td>
-        <td class="px-4 py-3 border-b border-gray-200">
-         Pengecekan berkala selesai tanpa masalah
-        </td>
-       </tr>
-      </tbody>
-     </table>
-    </div>
-   </section>
-   <!-- Laporan Section -->
-   <section class="bg-white rounded-lg shadow p-6" id="laporan">
-    <h2 class="text-3xl font-semibold mb-6 text-blue-700">
-     Laporan Kondisi Mesin
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-     <div class="bg-blue-50 rounded-lg p-5 text-center">
-      <img alt="Ilustrasi mesin berwarna hijau menunjukkan kondisi mesin baik" class="mx-auto mb-4 rounded-md" height="150" src="https://storage.googleapis.com/a1aa/image/19f05c8a-6325-401e-9c2e-b92d59c884d3.jpg" width="150"/>
-      <h3 class="text-xl font-semibold text-green-700 mb-2">
-       Mesin Baik
-      </h3>
-      <p class="text-gray-700">
-       Jumlah mesin yang dalam kondisi baik dan siap digunakan.
-      </p>
-      <p class="mt-3 text-3xl font-bold text-green-700">
-       18
-      </p>
-     </div>
-     <div class="bg-yellow-50 rounded-lg p-5 text-center">
-      <img alt="Ilustrasi mesin berwarna kuning dengan tanda peringatan menunjukkan mesin perlu perbaikan" class="mx-auto mb-4 rounded-md" height="150" src="https://storage.googleapis.com/a1aa/image/4283a762-4175-4e6e-0931-4f75704d7dbe.jpg" width="150"/>
-      <h3 class="text-xl font-semibold text-yellow-700 mb-2">
-       Perlu Perbaikan
-      </h3>
-      <p class="text-gray-700">
-       Mesin yang memerlukan perbaikan agar dapat berfungsi optimal.
-      </p>
-      <p class="mt-3 text-3xl font-bold text-yellow-700">
-       4
-      </p>
-     </div>
-     <div class="bg-red-50 rounded-lg p-5 text-center">
-      <img alt="Ilustrasi mesin berwarna merah dengan tanda silang menunjukkan mesin rusak" class="mx-auto mb-4 rounded-md" height="150" src="https://storage.googleapis.com/a1aa/image/68362b87-fd6e-40c9-bf11-cb837b6ef56a.jpg" width="150"/>
-      <h3 class="text-xl font-semibold text-red-700 mb-2">
-       Mesin Rusak
-      </h3>
-      <p class="text-gray-700">
-       Mesin yang tidak dapat beroperasi dan perlu penggantian komponen.
-      </p>
-      <p class="mt-3 text-3xl font-bold text-red-700">
-       2
-      </p>
-     </div>
-    </div>
-   </section>
-   <!-- Riwayat Pengecekan Mesin -->
- <section class="mb-16" id="records">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center space-x-2">
-     <i class="fas fa-history text-blue-600">
-     </i>
-     <span>
-      Riwayat Pengecekan Mesin
-     </span>
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="recordsList">
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna abu-abu dengan latar belakang pabrik, kondisi mesin baik" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/cec87aa5-6990-4bad-ea8b-981d0bc8f46f.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Pompa Air
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-06-10
-       </p>
-       <p class="text-sm text-green-600 font-semibold mb-2">
-        Kondisi: Baik
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin berfungsi dengan baik tanpa ada kerusakan.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin industri berwarna oranye dengan latar belakang pabrik, kondisi mesin perlu perbaikan" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/59abad73-a016-49a4-e72d-27a37fed2be5.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Conveyor
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-06-08
-       </p>
-       <p class="text-sm text-yellow-600 font-semibold mb-2">
-        Kondisi: Perlu Perbaikan
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Terdapat suara berisik dan getaran berlebih saat beroperasi.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin rusak berwarna merah dengan latar belakang pabrik, kondisi mesin rusak" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/29c79a58-0858-4731-e4d7-22ac04164a1e.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Press
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-06-05
-       </p>
-       <p class="text-sm text-red-600 font-semibold mb-2">
-        Kondisi: Rusak
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin tidak dapat beroperasi, perlu penggantian komponen utama.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna biru dengan latar belakang pabrik, kondisi mesin baik" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/09548050-fe8a-41f1-704c-f8c273373ba9.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Kompresor
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-06-03
-       </p>
-       <p class="text-sm text-green-600 font-semibold mb-2">
-        Kondisi: Baik
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin beroperasi normal dengan tekanan udara stabil.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna kuning dengan latar belakang pabrik, kondisi mesin perlu perbaikan" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/157ccf3a-b9f8-46d3-85d0-1e21f4e0575c.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Penggiling
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-06-01
-       </p>
-       <p class="text-sm text-yellow-600 font-semibold mb-2">
-        Kondisi: Perlu Perbaikan
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Terdapat kebocoran oli dan suara kasar saat beroperasi.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna merah gelap dengan latar belakang pabrik, kondisi mesin rusak" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/c894848b-ffd2-45ff-baa8-c6dee0f781f6.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Pendingin
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-30
-       </p>
-       <p class="text-sm text-red-600 font-semibold mb-2">
-        Kondisi: Rusak
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Sistem pendingin tidak berfungsi, perlu perbaikan segera.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna hijau dengan latar belakang pabrik, kondisi mesin baik" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/3c51e7a7-3775-49aa-2bab-07c273fc2c00.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Las
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-28
-       </p>
-       <p class="text-sm text-green-600 font-semibold mb-2">
-        Kondisi: Baik
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin las berfungsi dengan baik dan stabil.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna oranye dengan latar belakang pabrik, kondisi mesin perlu perbaikan" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/bbab7f18-686a-48d3-9d01-4b4eeeb67fc9.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Bor
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-25
-       </p>
-       <p class="text-sm text-yellow-600 font-semibold mb-2">
-        Kondisi: Perlu Perbaikan
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin bor mengalami penurunan kecepatan dan getaran.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna merah dengan latar belakang pabrik, kondisi mesin rusak" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/3d18d80b-6b55-4ee0-18c1-94f23180725c.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Giling Kopi
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-22
-       </p>
-       <p class="text-sm text-red-600 font-semibold mb-2">
-        Kondisi: Rusak
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin tidak dapat berputar, perlu penggantian motor.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna biru muda dengan latar belakang pabrik, kondisi mesin baik" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/95a24da4-ab0a-4c77-9be0-7bb58a3ace93.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Pengemas
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-20
-       </p>
-       <p class="text-sm text-green-600 font-semibold mb-2">
-        Kondisi: Baik
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin pengemas beroperasi lancar tanpa hambatan.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna kuning dengan latar belakang pabrik, kondisi mesin perlu perbaikan" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/157ccf3a-b9f8-46d3-85d0-1e21f4e0575c.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Mixer
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-18
-       </p>
-       <p class="text-sm text-yellow-600 font-semibold mb-2">
-        Kondisi: Perlu Perbaikan
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin mixer mengalami gangguan pada motor penggerak.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna merah dengan latar belakang pabrik, kondisi mesin rusak" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/3d18d80b-6b55-4ee0-18c1-94f23180725c.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Penggiling Batu
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-15
-       </p>
-       <p class="text-sm text-red-600 font-semibold mb-2">
-        Kondisi: Rusak
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin tidak dapat beroperasi karena kerusakan pada gearbox.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna hijau muda dengan latar belakang pabrik, kondisi mesin baik" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/69e83138-41e5-4464-ebb6-87ae9584eb9d.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Pengering
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-12
-       </p>
-       <p class="text-sm text-green-600 font-semibold mb-2">
-        Kondisi: Baik
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin pengering berfungsi optimal dengan suhu stabil.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna oranye dengan latar belakang pabrik, kondisi mesin perlu perbaikan" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/bbab7f18-686a-48d3-9d01-4b4eeeb67fc9.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Pemotong
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-10
-       </p>
-       <p class="text-sm text-yellow-600 font-semibold mb-2">
-        Kondisi: Perlu Perbaikan
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Pisau pemotong tumpul dan perlu diganti.
-       </p>
-      </div>
-     </article>
-     <article class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <img alt="Gambar mesin berwarna merah gelap dengan latar belakang pabrik, kondisi mesin rusak" class="w-full h-48 object-cover" height="250" src="https://storage.googleapis.com/a1aa/image/c894848b-ffd2-45ff-baa8-c6dee0f781f6.jpg" width="400"/>
-      <div class="p-4 flex flex-col flex-grow">
-       <h3 class="font-semibold text-lg text-gray-800 mb-1">
-        Mesin Pengangkat
-       </h3>
-       <p class="text-sm text-gray-600 mb-1">
-        Tanggal: 2024-05-08
-       </p>
-       <p class="text-sm text-red-600 font-semibold mb-2">
-        Kondisi: Rusak
-       </p>
-       <p class="text-gray-700 text-sm flex-grow">
-        Mesin pengangkat tidak berfungsi, perlu perbaikan sistem hidrolik.
-       </p>
-      </div>
-     </article>
-    </div>
-   </section>
-  </main>
-  <footer class="bg-blue-700 text-white py-6 mt-12">
-   <div class="container mx-auto px-4 text-center text-sm">
-    © 2024 Sistem Informasi Pengecekan Mesin. All rights reserved.
-   </div>
-  </footer>
-  <script>
-   // Simple form submission handlers to prevent reload
-    document.getElementById('formCekMesin').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Data pengecekan mesin berhasil disimpan!');
-      this.reset();
-    });
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Manajemen Inventory Consumable</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar-transition { transition: all 0.3s ease; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hover-scale { transition: transform 0.2s; }
+        .hover-scale:hover { transform: scale(1.02); }
+        .notification-badge { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-blue-900 to-blue-800 text-white z-40 sidebar-transition">
+        <div class="p-6">
+            <div class="flex items-center space-x-3 mb-8">
+                <i class="fas fa-boxes text-3xl"></i>
+                <div>
+                    <h1 class="text-xl font-bold">Inventory Pro</h1>
+                    <p class="text-xs text-blue-200">v2.0.0</p>
+                </div>
+            </div>
+            
+            <nav class="space-y-2">
+                <a href="#" onclick="showSection('dashboard')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition">
+                    <i class="fas fa-dashboard w-5"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" onclick="showSection('products')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition">
+                    <i class="fas fa-box w-5"></i>
+                    <span>Daftar Barang</span>
+                </a>
+                <a href="#" onclick="showSection('transactions')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition">
+                    <i class="fas fa-exchange-alt w-5"></i>
+                    <span>Transaksi</span>
+                </a>
+                <a href="#" onclick="showSection('verification')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition relative">
+                    <i class="fas fa-check-circle w-5"></i>
+                    <span>Verifikasi</span>
+                    <span id="verificationBadge" class="notification-badge absolute right-2 top-3 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">3</span>
+                </a>
+                <a href="#" onclick="showSection('reports')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition">
+                    <i class="fas fa-chart-bar w-5"></i>
+                    <span>Laporan</span>
+                </a>
+            </nav>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="bg-blue-700 rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                    <img src="https://picsum.photos/seed/user1/40/40" alt="User" class="rounded-full">
+                    <div class="flex-1">
+                        <p class="font-semibold text-sm">Ahmad Fauzi</p>
+                        <p class="text-xs text-blue-200">Administrator</p>
+                    </div>
+                    <button onclick="logout()" class="text-blue-200 hover:text-white">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aside>
 
-    document.getElementById('formKontak').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Pesan Anda telah terkirim. Terima kasih!');
-      this.reset();
-    });
-  </script>
- </body>
+    <!-- Main Content -->
+    <main class="ml-64 min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
+            <div class="px-6 py-4 flex items-center justify-between">
+                <button id="menuToggle" class="lg:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Cari barang..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                    <button class="relative text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">5</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="p-6 fade-in">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Dashboard</h2>
+            
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-sm p-6 hover-scale">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Total Barang</p>
+                            <p class="text-3xl font-bold text-gray-800">245</p>
+                            <p class="text-green-500 text-sm mt-1">
+                                <i class="fas fa-arrow-up"></i> 12% dari bulan lalu
+                            </p>
+                        </div>
+                        <div class="bg-blue-100 p-3 rounded-lg">
+                            <i class="fas fa-box text-blue-600 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm p-6 hover-scale">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Stok Menipis</p>
+                            <p class="text-3xl font-bold text-orange-600">18</p>
+                            <p class="text-orange-500 text-sm mt-1">
+                                <i class="fas fa-exclamation-triangle"></i> Perlu restock
+                            </p>
+                        </div>
+                        <div class="bg-orange-100 p-3 rounded-lg">
+                            <i class="fas fa-exclamation text-orange-600 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm p-6 hover-scale">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Transaksi Hari Ini</p>
+                            <p class="text-3xl font-bold text-gray-800">42</p>
+                            <p class="text-blue-500 text-sm mt-1">
+                                <i class="fas fa-arrow-up"></i> 8% dari kemarin
+                            </p>
+                        </div>
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <i class="fas fa-exchange-alt text-green-600 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm p-6 hover-scale">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Menunggu Verifikasi</p>
+                            <p class="text-3xl font-bold text-red-600">3</p>
+                            <p class="text-red-500 text-sm mt-1">
+                                <i class="fas fa-clock"></i> Pending approval
+                            </p>
+                        </div>
+                        <div class="bg-red-100 p-3 rounded-lg">
+                            <i class="fas fa-hourglass-half text-red-600 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Grafik Stok Masuk & Keluar</h3>
+                    <canvas id="stockChart" height="200"></canvas>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Kategori Barang</h3>
+                    <canvas id="categoryChart" height="200"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Transaksi Terakhir</h3>
+                    <a href="#" onclick="showSection('transactions')" class="text-blue-600 hover:text-blue-700 text-sm">Lihat semua</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="text-left py-3 px-4 text-sm font-medium text-gray-700">ID</th>
+                                <th class="text-left py-3 px-4 text-sm font-medium text-gray-700">Barang</th>
+                                <th class="text-left py-3 px-4 text-sm font-medium text-gray-700">Tipe</th>
+                                <th class="text-left py-3 px-4 text-sm font-medium text-gray-700">Jumlah</th>
+                                <th class="text-left py-3 px-4 text-sm font-medium text-gray-700">Status</th>
+                                <th class="text-left py-3 px-4 text-sm font-medium text-gray-700">Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentTransactions">
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4 text-sm">#TRX001</td>
+                                <td class="py-3 px-4 text-sm">Kertas A4</td>
+                                <td class="py-3 px-4 text-sm">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Masuk</span>
+                                </td>
+                                <td class="py-3 px-4 text-sm">100 rim</td>
+                                <td class="py-3 px-4 text-sm">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Verified</span>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-500">2 jam lalu</td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4 text-sm">#TRX002</td>
+                                <td class="py-3 px-4 text-sm">Spidol Whiteboard</td>
+                                <td class="py-3 px-4 text-sm">
+                                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Keluar</span>
+                                </td>
+                                <td class="py-3 px-4 text-sm">5 box</td>
+                                <td class="py-3 px-4 text-sm">
+                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Pending</span>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-500">3 jam lalu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="p-6 hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Daftar Barang</h2>
+                <button onclick="showAddProductModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center space-x-2">
+                    <i class="fas fa-plus"></i>
+                    <span>Tambah Barang</span>
+                </button>
+            </div>
+
+            <!-- Filter and Search -->
+            <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>Semua Kategori</option>
+                            <option>Alat Tulis</option>
+                            <option>Perlengkapan Kantor</option>
+                            <option>Elektronik</option>
+                            <option>Kebersihan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Status Stok</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>Semua Status</option>
+                            <option>Tersedia</option>
+                            <option>Menipis</option>
+                            <option>Habis</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Urutkan</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>Nama A-Z</option>
+                            <option>Nama Z-A</option>
+                            <option>Stok Terbanyak</option>
+                            <option>Stok Terendah</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Cari</label>
+                        <input type="text" placeholder="Nama barang..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Product cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Transactions Section -->
+        <section id="transactions" class="p-6 hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Transaksi Stok</h2>
+                <button onclick="showTransactionModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center space-x-2">
+                    <i class="fas fa-plus"></i>
+                    <span>Buat Transaksi</span>
+                </button>
+            </div>
+
+            <!-- Transaction Tabs -->
+            <div class="bg-white rounded-xl shadow-sm mb-6">
+                <div class="border-b border-gray-200">
+                    <nav class="flex space-x-8 px-6">
+                        <button onclick="filterTransactions('all')" class="tab-btn py-4 border-b-2 border-blue-600 text-blue-600 font-medium">Semua</button>
+                        <button onclick="filterTransactions('in')" class="tab-btn py-4 border-b-2 border-transparent text-gray-500 hover:text-gray-700">Stok Masuk</button>
+                        <button onclick="filterTransactions('out')" class="tab-btn py-4 border-b-2 border-transparent text-gray-500 hover:text-gray-700">Stok Keluar</button>
+                        <button onclick="filterTransactions('pending')" class="tab-btn py-4 border-b-2 border-transparent text-gray-500 hover:text-gray-700">Menunggu Verifikasi</button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Transactions Table -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Transaksi</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Barang</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipe</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pengguna</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsTable" class="bg-white divide-y divide-gray-200">
+                            <!-- Transaction rows will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verification Section -->
+        <section id="verification" class="p-6 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Verifikasi Transaksi</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Pending Verifications -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Menunggu Verifikasi</h3>
+                        <div id="pendingVerifications" class="space-y-4">
+                            <!-- Pending verification cards will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verification Stats -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Statistik Verifikasi</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Total Pending</span>
+                                <span class="font-semibold text-orange-600">3</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Verified Today</span>
+                                <span class="font-semibold text-green-600">12</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Rejected Today</span>
+                                <span class="font-semibold text-red-600">2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-green-100 p-2 rounded-full">
+                                    <i class="fas fa-check text-green-600 text-xs"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">Verified TRX123</p>
+                                    <p class="text-xs text-gray-500">5 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-red-100 p-2 rounded-full">
+                                    <i class="fas fa-times text-red-600 text-xs"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">Rejected TRX122</p>
+                                    <p class="text-xs text-gray-500">1 hour ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="p-6 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Laporan & Analisis</h2>
+
+            <!-- Date Range Selector -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <div class="flex flex-wrap items-center gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Dari Tanggal</label>
+                        <input type="date" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Sampai Tanggal</label>
+                        <input type="date" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="self-end">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            <i class="fas fa-filter mr-2"></i>Filter
+                        </button>
+                    </div>
+                    <div class="self-end">
+                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                            <i class="fas fa-download mr-2"></i>Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Tren Stok Bulanan</h3>
+                    <canvas id="monthlyTrendChart" height="200"></canvas>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Top 5 Barang Terlaris</h3>
+                    <canvas id="topProductsChart" height="200"></canvas>
+                </div>
+            </div>
+
+            <!-- Summary Report -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Ringkasan Laporan</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-blue-600">1,245</p>
+                        <p class="text-gray-600">Total Stok Masuk</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-red-600">987</p>
+                        <p class="text-gray-600">Total Stok Keluar</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-green-600">258</p>
+                        <p class="text-gray-600">Sisa Stok</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-semibold text-gray-800">Tambah Barang Baru</h3>
+                    <button onclick="closeAddProductModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <form class="p-6 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Barang</label>
+                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option>Pilih Kategori</option>
+                            <option>Alat Tulis</option>
+                            <option>Perlengkapan Kantor</option>
+                            <option>Elektronik</option>
+                            <option>Kebersihan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">SKU/Kode Barang</label>
+                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Satuan</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option>Pilih Satuan</option>
+                            <option>Pcs</option>
+                            <option>Box</option>
+                            <option>Rim</option>
+                            <option>Bottle</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Stok Awal</label>
+                        <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Stok Minimum</label>
+                        <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
+                    <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Foto Barang</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 transition cursor-pointer">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                        <p class="text-gray-600">Klik untuk upload atau drag & drop</p>
+                        <p class="text-sm text-gray-500 mt-1">PNG, JPG hingga 10MB</p>
+                        <input type="file" class="hidden" accept="image/*">
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3 pt-4">
+                    <button type="button" onclick="closeAddProductModal()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Simpan Barang</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Transaction Modal -->
+    <div id="transactionModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-md w-full">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-semibold text-gray-800">Buat Transaksi Baru</h3>
+                    <button onclick="closeTransactionModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <form class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tipe Transaksi</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" onclick="selectTransactionType('in')" class="transaction-type-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-blue-500 transition text-center">
+                            <i class="fas fa-arrow-down text-green-600 text-xl mb-1"></i>
+                            <p class="text-sm font-medium">Stok Masuk</p>
+                        </button>
+                        <button type="button" onclick="selectTransactionType('out')" class="transaction-type-btn px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-blue-500 transition text-center">
+                            <i class="fas fa-arrow-up text-red-600 text-xl mb-1"></i>
+                            <p class="text-sm font-medium">Stok Keluar</p>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Pilih Barang</label>
+                    <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option>Pilih Barang</option>
+                        <option>Kertas A4 - Stok: 150 rim</option>
+                        <option>Spidol Whiteboard - Stok: 25 box</option>
+                        <option>Tinta Printer - Stok: 10 botol</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jumlah</label>
+                    <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Keterangan</label>
+                    <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tambahkan keterangan jika diperlukan..."></textarea>
+                </div>
+                <div class="flex justify-end space-x-3 pt-4">
+                    <button type="button" onclick="closeTransactionModal()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Buat Transaksi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        const products = [
+            { id: 1, name: 'Kertas A4', category: 'Alat Tulis', stock: 150, minStock: 50, unit: 'rim', image: 'https://picsum.photos/seed/paper1/300/200' },
+            { id: 2, name: 'Spidol Whiteboard', category: 'Alat Tulis', stock: 25, minStock: 10, unit: 'box', image: 'https://picsum.photos/seed/marker1/300/200' },
+            { id: 3, name: 'Tinta Printer HP', category: 'Elektronik', stock: 8, minStock: 5, unit: 'botol', image: 'https://picsum.photos/seed/ink1/300/200' },
+            { id: 4, name: 'Stapler', category: 'Alat Tulis', stock: 45, minStock: 20, unit: 'pcs', image: 'https://picsum.photos/seed/stapler1/300/200' },
+            { id: 5, name: 'Hand Sanitizer', category: 'Kebersihan', stock: 12, minStock: 15, unit: 'botol', image: 'https://picsum.photos/seed/sanitizer1/300/200' },
+            { id: 6, name: 'Klip Plastik', category: 'Perlengkapan Kantor', stock: 200, minStock: 100, unit: 'box', image: 'https://picsum.photos/seed/clip1/300/200' }
+        ];
+
+        const transactions = [
+            { id: 'TRX001', date: '2024-01-15', product: 'Kertas A4', type: 'in', quantity: 100, user: 'Budi Santoso', status: 'verified' },
+            { id: 'TRX002', date: '2024-01-15', product: 'Spidol Whiteboard', type: 'out', quantity: 5, user: 'Siti Rahayu', status: 'pending' },
+            { id: 'TRX003', date: '2024-01-14', product: 'Tinta Printer HP', type: 'in', quantity: 20, user: 'Ahmad Fauzi', status: 'verified' },
+            { id: 'TRX004', date: '2024-01-14', product: 'Hand Sanitizer', type: 'out', quantity: 8, user: 'Dewi Lestari', status: 'pending' }
+        ];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            renderTransactions();
+            renderPendingVerifications();
+            initializeCharts();
+            updateVerificationBadge();
+        });
+
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.getElementById(sectionId).classList.add('fade-in');
+            
+            // Update active nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('bg-blue-700');
+            });
+            event.target.closest('.nav-item').classList.add('bg-blue-700');
+        }
+
+        // Products
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => {
+                const stockStatus = product.stock <= product.minStock ? 'low' : product.stock === 0 ? 'out' : 'normal';
+                const statusColor = stockStatus === 'low' ? 'orange' : stockStatus === 'out' ? 'red' : 'green';
+                const statusText = stockStatus === 'low' ? 'Menipis' : stockStatus === 'out' ? 'Habis' : 'Tersedia';
+                
+                return `
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden hover-scale">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">${product.name}</h3>
+                            <p class="text-sm text-gray-600 mb-3">${product.category}</p>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <p class="text-xs text-gray-500">Stok</p>
+                                    <p class="text-lg font-bold text-gray-800">${product.stock} ${product.unit}</p>
+                                </div>
+                                <span class="bg-${statusColor}-100 text-${statusColor}-800 px-2 py-1 rounded-full text-xs font-medium">${statusText}</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="editProduct(${product.id})" class="flex-1 bg-blue-50 text-blue-600 px-3 py-2 rounded-lg hover:bg-blue-100 transition text-sm">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                                <button onclick="viewProduct(${product.id})" class="flex-1 bg-gray-50 text-gray-600 px-3 py-2 rounded-lg hover:bg-gray-100 transition text-sm">
+                                    <i class="fas fa-eye mr-1"></i> Detail
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Transactions
+        function renderTransactions() {
+            const tbody = document.getElementById('transactionsTable');
+            tbody.innerHTML = transactions.map(tx => {
+                const typeColor = tx.type === 'in' ? 'green' : 'red';
+                const typeText = tx.type === 'in' ? 'Masuk' : 'Keluar';
+                const statusColor = tx.status === 'verified' ? 'green' : tx.status === 'rejected' ? 'red' : 'yellow';
+                const statusText = tx.status === 'verified' ? 'Verified' : tx.status === 'rejected' ? 'Rejected' : 'Pending';
+                
+                return `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${tx.id}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${tx.date}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${tx.product}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="bg-${typeColor}-100 text-${typeColor}-800 px-2 py-1 rounded-full text-xs font-medium">${typeText}</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${tx.quantity}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${tx.user}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="bg-${statusColor}-100 text-${statusColor}-800 px-2 py-1 rounded-full text-xs font-medium">${statusText}</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            ${tx.status === 'pending' ? `
+                                <button onclick="verifyTransaction('${tx.id}')" class="text-blue-600 hover:text-blue-900 mr-3">Verify</button>
+                                <button onclick="rejectTransaction('${tx.id}')" class="text-red-600 hover:text-red-900">Reject</button>
+                            ` : `
+                                <button class="text-gray-400 cursor-not-allowed" disabled>View</button>
+                            `}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Pending Verifications
+        function renderPendingVerifications() {
+            const container = document.getElementById('pendingVerifications');
+            const pendingTx = transactions.filter(tx => tx.status === 'pending');
+            
+            container.innerHTML = pendingTx.map(tx => `
+                <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                    <div class="flex items-start justify-between mb-3">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">${tx.id} - ${tx.product}</h4>
+                            <p class="text-sm text-gray-600">Oleh: ${tx.user} • ${tx.date}</p>
+                        </div>
+                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Pending</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600">Tipe: <span class="font-medium">${tx.type === 'in' ? 'Stok Masuk' : 'Stok Keluar'}</span></p>
+                            <p class="text-sm text-gray-600">Jumlah: <span class="font-medium">${tx.quantity}</span></p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="verifyTransaction('${tx.id}')" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition text-sm">
+                                <i class="fas fa-check mr-1"></i> Approve
+                            </button>
+                            <button onclick="rejectTransaction('${tx.id}')" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition text-sm">
+                                <i class="fas fa-times mr-1"></i> Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Charts
+        function initializeCharts() {
+            // Stock Chart
+            const stockCtx = document.getElementById('stockChart').getContext('2d');
+            new Chart(stockCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                    datasets: [{
+                        label: 'Stok Masuk',
+                        data: [120, 190, 300, 250, 200, 300],
+                        borderColor: 'rgb(34, 197, 94)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Stok Keluar',
+                        data: [80, 150, 200, 180, 150, 200],
+                        borderColor: 'rgb(239, 68, 68)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+
+            // Category Chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Alat Tulis', 'Perlengkapan Kantor', 'Elektronik', 'Kebersihan'],
+                    datasets: [{
+                        data: [35, 25, 20, 20],
+                        backgroundColor: [
+                            'rgb(59, 130, 246)',
+                            'rgb(34, 197, 94)',
+                            'rgb(251, 146, 60)',
+                            'rgb(147, 51, 234)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Modals
+        function showAddProductModal() {
+            document.getElementById('addProductModal').classList.remove('hidden');
+        }
+
+        function closeAddProductModal() {
+            document.getElementById('addProductModal').classList.add('hidden');
+        }
+
+        function showTransactionModal() {
+            document.getElementById('transactionModal').classList.remove('hidden');
+        }
+
+        function closeTransactionModal() {
+            document.getElementById('transactionModal').classList.add('hidden');
+        }
+
+        // Transaction Type Selection
+        function selectTransactionType(type) {
+            document.querySelectorAll('.transaction-type-btn').forEach(btn => {
+                btn.classList.remove('border-blue-500', 'bg-blue-50');
+            });
+            event.target.closest('.transaction-type-btn').classList.add('border-blue-500', 'bg-blue-50');
+        }
+
+        // Verification Actions
+        function verifyTransaction(txId) {
+            // Update transaction status
+            const tx = transactions.find(t => t.id === txId);
+            if (tx) {
+                tx.status = 'verified';
+                renderTransactions();
+                renderPendingVerifications();
+                updateVerificationBadge();
+                showNotification('Transaksi berhasil diverifikasi', 'success');
+            }
+        }
+
+        function rejectTransaction(txId) {
+            const tx = transactions.find(t => t.id === txId);
+            if (tx) {
+                tx.status = 'rejected';
+                renderTransactions();
+                renderPendingVerifications();
+                updateVerificationBadge();
+                showNotification('Transaksi ditolak', 'error');
+            }
+        }
+
+        function updateVerificationBadge() {
+            const pendingCount = transactions.filter(tx => tx.status === 'pending').length;
+            const badge = document.getElementById('verificationBadge');
+            if (pendingCount > 0) {
+                badge.textContent = pendingCount;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        // Notifications
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 fade-in ${
+                type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+            }`;
+            notification.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Filter Transactions
+        function filterTransactions(filter) {
+            // Update active tab
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-blue-600', 'text-blue-600');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+            event.target.classList.add('border-blue-600', 'text-blue-600');
+            
+            // Filter transactions (in real app, this would filter the data)
+            console.log('Filtering transactions:', filter);
+        }
+
+        // Product Actions
+        function editProduct(id) {
+            showNotification('Fitur edit barang akan segera hadir', 'success');
+        }
+
+        function viewProduct(id) {
+            showNotification('Fitur detail barang akan segera hadir', 'success');
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                showNotification('Berhasil keluar', 'success');
+                // In real app, redirect to login page
+            }
+        }
+
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Handle form submissions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Data berhasil disimpan', 'success');
+                // Close modal if it's a modal form
+                if (this.closest('.fixed')) {
+                    this.closest('.fixed').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
