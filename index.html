@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login | Santos Jaya Abadi</title>
+  <link rel="icon" type="image/x-icon" href="santos-logo-big (1).png" />
   <style>
     :root { --brown-dark:#3b2f2f; --accent:#c07a4b; --cream:#fff8f2; --beige:#ede3d6; }
     *{box-sizing:border-box;margin:0;padding:0}
@@ -47,7 +48,7 @@
       if (user === 'administrator') { window.location.href = 'indexsuperadmin.html'; }
       else if (['admprodsja2','admpro1','admprodjas'].includes(user)) { window.location.href = 'indexadmin1.html'; }
       else if (user === 'admpro2') { window.location.href = 'indexadmin2.html'; }
-      else if (['hcssja1','hcssja2','hcssja3'].includes(user)) { window.location.href = 'indexhcs.html'; }
+      else if (['hcssja1','hcssja2','hcssjas'].includes(user)) { window.location.href = 'indexhcs.html'; }
       else if (['spvprodsja2','spvpro1','spvpro2','spvprodjas'].includes(user)) { window.location.href = 'indexspv.html'; }
       else { alert('Username tidak dikenal!'); localStorage.removeItem('sja_username'); }
     });
