@@ -502,90 +502,93 @@ button.btn-update:disabled {
           <div class="small-muted" style="margin-top:6px">Berisikan data order barang yang belum datang</div>
     </div>
 
-    <style>
-    
-    .filter-container {
-      background: #fffaf2;
-      padding: 20px 28px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      border: 1px solid #e2d3b3;
-      justify-content: center;
-    }
+       <style>
+  /* Filter tanggal minimalis sejajar tombol export */
+  .filter-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fffaf2;
+    border: 1px solid #e5d5b8;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 13px;
+  }
 
-    .filter-container label {
-      font-weight: 600;
-      font-size: 14px;
-      color: #7b5e3e;
-    }
+  .filter-container label {
+    color: #7b5e3e;
+    font-weight: 500;
+  }
 
-    .filter-container input[type="date"] {
-      padding: 8px 12px;
-      border: 1px solid #c9b48c;
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-      background-color: #fdf7ee;
-      color: #5a4327;
-      transition: 0.2s;
-    }
+  .filter-container input[type="date"] {
+    border: 1px solid #ccb58e;
+    border-radius: 6px;
+    padding: 3px 6px;
+    font-size: 13px;
+    background-color: #fdf7ee;
+    color: #5a4327;
+    outline: none;
+    transition: border-color 0.2s;
+  }
 
-    .filter-container input[type="date"]:focus {
-      border-color: #b78d57;
-      box-shadow: 0 0 0 3px rgba(183, 141, 87, 0.2);
-    }
+  .filter-container input[type="date"]:focus {
+    border-color: #b78d57;
+  }
 
-    .btn-gold {
-      background: linear-gradient(to bottom, #d3b07a, #b78d57);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 9px 18px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-    }
+  .btn-gold {
+    background: linear-gradient(to bottom, #d3b07a, #b78d57);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
 
-    .btn-gold:hover {
-      background: linear-gradient(to bottom, #e1bc82, #c59a60);
-      transform: translateY(-1px);
-    }
+  .btn-gold:hover {
+    background: linear-gradient(to bottom, #e1bc82, #c59a60);
+  }
 
-    .btn-gold:active {
-      transform: scale(0.98);
-    }
-  </style>
+  /* Group bar di kanan atas */
+  .action-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+</style>
 
-<div class="filter-container">
-    <label for="start-date">Dari:</label>
+<div class="action-bar">
+  <div class="filter-container">
+    <label for="start-date">Dari</label>
     <input type="date" id="start-date">
-
-    <label for="end-date">Sampai:</label>
+    <label for="end-date">Sampai</label>
     <input type="date" id="end-date">
-
     <button class="btn-gold" id="filter-btn">Filter</button>
   </div>
 
-  <script>
-    document.getElementById('filter-btn').addEventListener('click', () => {
-      const start = document.getElementById('start-date').value;
-      const end = document.getElementById('end-date').value;
+  <button class="btn-gold" id="btnExportKedatanganCSV">Export CSV</button>
+  <button class="btn-gold" id="btnExportKedatanganPDF">Export PDF</button>
+</div>
 
-      if (!start || !end) {
-        alert('Silakan pilih kedua tanggal terlebih dahulu!');
-        return;
-      }
+<script>
+  document.getElementById('filter-btn').addEventListener('click', () => {
+    const start = document.getElementById('start-date').value;
+    const end = document.getElementById('end-date').value;
 
-      alert(`Filter dari ${start} sampai ${end}`);
-    });
-  </script>
+    if (!start || !end) {
+      alert('Silakan pilih kedua tanggal terlebih dahulu!');
+      return;
+    }
+
+    alert(`Filter dari ${start} sampai ${end}`);
+  });
+</script>
     
-  <div style="display:flex;gap:8px;align-items:center"><button class="btn-gold" id="btnExportKedatanganCSV">Export CSV</button><button class="btn-gold" id="btnExportKedatanganPDF">Export PDF</button></div>
-  
+  <!-- <div style="display:flex;gap:8px;align-items:center"><button class="btn-gold" id="btnExportKedatanganCSV">Export CSV</button><button class="btn-gold" id="btnExportKedatanganPDF">Export PDF</button></div>
+  -->
   </div>
    <div class="card table-wrap" style="overflow:auto;">
     <table id="dataTable">
