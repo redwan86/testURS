@@ -503,15 +503,17 @@ button.btn-update:disabled {
     </div>
 
     <style>
-      filter-container {
-      background: #fffaf0;
-      padding-right: 80px;
+    
+    .filter-container {
+      background: #fffaf2;
+      padding: 20px 28px;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       display: flex;
       gap: 12px;
       align-items: center;
       border: 1px solid #e2d3b3;
+      justify-content: center;
     }
 
     .filter-container label {
@@ -557,16 +559,16 @@ button.btn-update:disabled {
       transform: scale(0.98);
     }
   </style>
-    
-    <div class="filter-container">
-      <label for="start-date">Dari:</label>
-      <input type="date" id="start-date">
 
-      <label for="end-date">Sampai:</label>
-      <input type="date" id="end-date">
+<div class="filter-container">
+    <label for="start-date">Dari:</label>
+    <input type="date" id="start-date">
 
-      <button class="btn-gold" id="filter-btn">Filter</button>
-    </div>
+    <label for="end-date">Sampai:</label>
+    <input type="date" id="end-date">
+
+    <button class="btn-gold" id="filter-btn">Filter</button>
+  </div>
 
   <script>
     document.getElementById('filter-btn').addEventListener('click', () => {
